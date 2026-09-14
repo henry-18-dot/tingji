@@ -1,0 +1,17 @@
+{
+  "id": "/",
+  "name": "听记 · 声音与笔记",
+  "short_name": "听记",
+  "description": "录音文件自动上传、排队转录与整理；笔记可离线阅读。",
+  "lang": "zh-CN",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f8f5ed",
+  "theme_color": "#f8f5ed",
+  "icons": [
+    { "src": "/icons/tingji-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icons/tingji-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icons/tingji.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

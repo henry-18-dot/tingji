@@ -1,0 +1,59 @@
+# Local user data and credentials
+/data/
+/output/
+/config/*
+!/config/course-schedule.example.json
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.sqlite*
+*.db
+*.log
+
+# Cloud projects are maintained separately
+/tingji-web/
+/tingji-cloud/
+/tools/
+/使用说明.md
+
+# Caches and generated files
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+node_modules/
+.playwright-mcp/
+.pytest_cache/
+.DS_Store
+Thumbs.db
+/tests/.artifacts/
+/web/qa/*.json
+/web/qa/*.png
+
+# Only reusable source documentation belongs in this repository
+/docs/*
+!/docs/note-standard-v3/
+/docs/note-standard-v3/*
+!/docs/note-standard-v3/deepseek-system.md
+!/docs/note-standard-v4/
+/docs/note-standard-v4/*
+!/docs/note-standard-v4/design-basis.md
+!/docs/note-standard-v5/
+/docs/note-standard-v5/*
+!/docs/note-standard-v5/deepseek-system.md
+!/docs/note-standard-v5/prompt-core.md
+!/docs/note-standard-v5/style-reference.md
+!/docs/note-standard-v5/exploration-directions.md
+!/docs/note-standard-v5/style-research.md
+!/docs/note-standard-v5/relations-notes.md
+
+# Keep local experiments; version reusable scripts only
+/scripts/*
+!/scripts/open-desktop-app.ps1
+!/scripts/recover-standard.py
+!/scripts/export-note.py
+!/scripts/qa_fixture.py

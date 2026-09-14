@@ -1,0 +1,17 @@
+.live-entry { margin-top:14px; width:100%; }
+.live-dialog { width:min(680px,calc(100vw - 28px)); max-height:calc(100dvh - 28px); overflow:auto; }
+.live-copy { line-height:1.75; color:var(--muted,#746d63); font-size:14px; }
+.live-readout { min-height:150px; max-height:38vh; overflow:auto; white-space:pre-wrap; font-size:17px; line-height:1.85; margin:18px 0; padding:18px; background:#f8f5ed; border-radius:14px; }
+.live-status { min-height:25px; font-size:14px; color:#6c685f; }
+.live-status.failed { color:#974b35; }
+.live-consent { display:flex; gap:10px; line-height:1.6; font-size:14px; margin:14px 0; cursor:pointer; min-height:44px; align-items:flex-start; }
+.live-consent input { flex:none; width:20px; height:20px; margin-top:2px; accent-color:var(--coral,#d88f77); }
+.live-recover { display:flex; flex-wrap:wrap; gap:12px; align-items:center; padding:14px 20px; background:#f3e8d3; border-radius:12px; margin:16px; }
+.live-dialog .dialog-footer { flex-wrap:wrap; gap:12px; }
+.live-dialog .button, .live-dialog .icon-button { min-height:44px; }
+.live-dialog .button[hidden] { display:none; }
+@media (max-width:480px) {
+  .live-dialog { padding:20px; }
+  .live-dialog .dialog-footer .button { flex:1 1 auto; }
+  .live-readout { min-height:120px; padding:14px; font-size:16px; }
+}

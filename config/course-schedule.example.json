@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "term": "我的课表",
+  "timezone": "Asia/Shanghai",
+  "seasonStart": null,
+  "seasonEnd": null,
+  "week1Start": null,
+  "periods": {},
+  "dayOverrides": {},
+  "courses": [],
+  "exceptions": []
+}

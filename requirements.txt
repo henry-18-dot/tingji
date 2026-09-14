@@ -1,0 +1,5 @@
+websockets==16.1.1
+
+# Local timetable PDF extraction
+pdfplumber==0.11.9
+PyMuPDF==1.27.2.3
