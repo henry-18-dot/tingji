@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f7f5ee"><meta name="description" content="把课堂录音整理成自己的笔记。">
+  <title>听记 · 我的课堂笔记</title>
+  <link rel="icon" href="/releases/189c81cde2ab01f6/favicon.svg"><link rel="stylesheet" href="/releases/189c81cde2ab01f6/app.css">
+  <link rel="stylesheet" href="/releases/189c81cde2ab01f6/library.css"><link rel="stylesheet" href="/releases/189c81cde2ab01f6/slides.css"><link rel="stylesheet" href="/releases/189c81cde2ab01f6/settings.css"><link rel="stylesheet" href="/releases/189c81cde2ab01f6/calendar.css"><link rel="stylesheet" href="/releases/189c81cde2ab01f6/knowledge.css"><link rel="stylesheet" href="/releases/189c81cde2ab01f6/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="/releases/189c81cde2ab01f6/reading-interactions.css"><link rel="stylesheet" href="/releases/189c81cde2ab01f6/knowledge-relations.css">
+  <script defer src="/releases/189c81cde2ab01f6/vendor/katex/katex.min.js"></script><script type="module" src="/releases/189c81cde2ab01f6/app.js"></script>
+<meta name="tingji-release" content="189c81cde2ab01f6">
+</head>
+<body>
+<svg class="symbols" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="icon-wave" viewBox="0 0 24 24"><path d="M3 10v4m4-8v12m5-16v20m5-16v12m4-8v4"/></symbol>
+  <symbol id="icon-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="icon-book" viewBox="0 0 24 24"><path d="M12 5v15M3 4c4-1 6 0 9 2 3-2 5-3 9-2v15c-4-1-6 0-9 2-3-2-5-3-9-2Z"/></symbol>
+  <symbol id="icon-notes" viewBox="0 0 24 24"><path d="M6 3h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm2 5h8m-8 4h8m-8 4h5"/></symbol>
+  <symbol id="icon-tune" viewBox="0 0 24 24"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="3"/><circle cx="16" cy="17" r="3"/></symbol>
+  <symbol id="icon-upload" viewBox="0 0 24 24"><path d="M12 16V3m-5 5 5-5 5 5M4 16v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></symbol>
+  <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+  <symbol id="icon-back" viewBox="0 0 24 24"><path d="M20 12H4m6-6-6 6 6 6"/></symbol>
+  <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></symbol>
+  <symbol id="icon-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+  <symbol id="icon-download" viewBox="0 0 24 24"><path d="M12 3v13m-5-5 5 5 5-5M4 17v4h16v-4"/></symbol>
+  <symbol id="icon-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-3a8 8 0 0 1 16 0v3"/></symbol>
+  <symbol id="icon-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 9a3 3 0 0 1 6 0c0 2-3 2-3 5m0 3v.1"/></symbol>
+</svg>
+<div id="notice" role="status" aria-live="polite" hidden></div>
+<section id="auth-view" class="auth-view" hidden>
+  <div class="auth-brand"><svg><use href="#icon-wave"/></svg><span>听记</span></div>
+  <main class="auth-card">
+    <p class="eyebrow">上课摸鱼好搭子^-^</p><h1 id="auth-heading">欢迎回来</h1>
+    <div class="tabbar" id="auth-tabs"><button type="button" class="active" data-auth="login">登录</button><button type="button" data-auth="register">创建账号</button></div>
+    <form id="auth-form">
+      <label id="auth-name-row" hidden>怎么称呼你<input name="name" autocomplete="nickname" maxlength="60" placeholder="你的名字"></label>
+      <label id="auth-email-row">学校邮箱<input name="email" type="email" autocomplete="username" placeholder="name@mail.sustech.edu.cn" required></label>
+      <label id="auth-password-row">密码<input name="password" type="password" autocomplete="current-password" minlength="4" maxlength="128" placeholder="至少 4 位" required></label>
+      <p id="auth-hint" class="muted small">支持 .edu、.edu.cn 等学校邮箱。</p>
+      <p id="auth-error" class="form-error" role="alert" hidden></p>
+      <button class="primary full" id="auth-submit">登录</button>
+    </form>
+    <button class="text-button" id="forgot-password">忘记密码</button>
+    <p class="auth-foot">录音交由火山引擎转写，文字由 DeepSeek 整理。<br>使用费用由站长承担。</p>
+  </main><a class="auth-help" href="./guide/index.html" target="_blank" rel="noopener">先看看怎么用 <span aria-hidden="true">↗</span></a>
+</section>
+<div id="app-view" class="app-layout" hidden>
+  <aside class="sidebar" id="app-sidebar"><button id="sidebar-toggle" class="icon-button sidebar-toggle" type="button" aria-label="收起侧栏" aria-controls="app-sidebar" aria-expanded="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4zM10 5v14M14 9l-3 3 3 3"/></svg></button>
+    <a class="brand" href="./"><svg><use href="#icon-wave"/></svg><span>听记<small>课堂笔记</small></span></a>
+    <nav aria-label="主导航">
+      <button class="nav-item active" data-view="notes" aria-label="我的笔记"><svg><use href="#icon-notes"/></svg><span>我的笔记</span><span id="note-count" class="count">0</span></button>
+      <button class="nav-item" data-view="courses" aria-label="我的课程"><svg><use href="#icon-book"/></svg><span>我的课程</span></button>
+      <button class="nav-item" data-view="slides" aria-label="PPT"><svg><use href="#icon-book"/></svg><span>PPT</span></button>
+      <button class="nav-item" data-view="settings" aria-label="设置"><svg><use href="#icon-tune"/></svg><span>设置</span></button>
+    </nav>
+    <div class="sidebar-bottom"><a class="nav-item" aria-label="使用指南" href="./guide/index.html" target="_blank" rel="noopener"><svg><use href="#icon-help"/></svg><span>使用指南</span></a><button id="account-open" class="account-button" aria-label="我的账号"><span id="avatar" class="avatar">同</span><span><strong id="account-name">同学</strong><small>我的账号</small></span><svg><use href="#icon-arrow"/></svg></button></div>
+  </aside>
+  <main class="workspace" id="workspace"><div id="offline-banner" class="offline-banner" role="status" hidden><span>离线阅读 · 仅显示这台设备上已打开的笔记</span><button id="offline-reconnect" type="button" class="text-button">重新连接</button></div>
+    <section id="notes-view">
+      <header class="page-header"><h1>我的笔记</h1><button id="library-open" class="text-button">（重新）整理笔记</button></header>
+      <div class="notes-welcome" id="notes-welcome"><h2 id="greeting"></h2><button id="empty-upload" class="primary"><svg><use href="#icon-upload"/></svg>上传录音</button><button id="merge-recordings" class="text-button" hidden>合并已有录音</button><button id="local-transfer-open" class="text-button" hidden>iPad 直传</button></div>
+      <div class="filters" id="note-filters" hidden><label class="search"><svg><use href="#icon-search"/></svg><input id="search" placeholder="查找笔记" aria-label="查找笔记"></label><select id="course-filter" aria-label="按课程筛选"><option value="">全部课程</option></select></div>
+      <div id="connection-error" class="inline-error" role="alert" hidden></div>
+      <div id="notes-list" class="notes-list" hidden></div>
+      <div id="notes-empty" class="no-matches" hidden>还没有匹配的笔记。</div>
+    </section>
+    <section id="courses-view" hidden><header class="page-header"><h1>我的课程</h1><button id="course-add" class="primary">导入课表</button></header><div id="courses-content"></div></section>
+    <section id="slides-view" hidden><div id="slides-content"></div></section>
+    <section id="settings-view" hidden><header class="page-header"><h1>设置</h1></header><div id="settings-content"></div></section>
+    <section id="detail-view" hidden><button id="detail-back" class="text-button back"><svg><use href="#icon-back"/></svg>全部笔记</button><header class="detail-header"><div><h1 class="detail-heading"><button id="detail-title" type="button" aria-expanded="true" aria-controls="detail-body"></button><button id="detail-imported" class="import-check" type="button" aria-label="查看导入日期" aria-expanded="false" aria-controls="detail-import-date" hidden>✓</button></h1><p id="detail-import-date" class="small muted" hidden></p></div><button id="detail-edit-open" class="secondary">编辑笔记</button></header><div id="detail-body"><details id="note-audio-panel" class="note-audio"><summary>课堂录音</summary><audio id="note-audio" controls preload="none"></audio><p><a id="note-audio-download" target="_blank" rel="noopener">打开或下载录音 ↗</a></p><p id="note-audio-error" class="form-error" hidden></p></details><div id="detail-stage" class="note-progress" role="status" aria-live="polite" hidden></div><div id="note-reader"><div class="reader-toolbar"><div class="tabbar"><button id="show-summary" class="active">整理笔记</button><button id="show-transcript">转写原文</button></div><div class="reader-actions"><button id="detail-slides" class="text-button">配套课件</button><button id="detail-regenerate" class="text-button">重新整理</button><select id="download-format" aria-label="下载格式"><option value="md">Markdown</option><option value="txt">原文 TXT</option><option value="html">阅读版 HTML</option></select><button id="detail-download" class="icon-button" aria-label="下载笔记"><svg><use href="#icon-download"/></svg></button></div></div><article id="summary-content" class="knowledge-document reader" tabindex="-1"></article><pre id="transcript-content" class="transcript reader" hidden></pre><div id="note-history"></div><details id="generation-details" class="generation-details"><summary>本次整理使用的提示词</summary><p id="generation-model" class="small muted"></p><pre id="generation-prompt"></pre></details></div></div></section>
+  </main>
+</div>
+<div id="loading-view" class="loading-view"><svg><use href="#icon-wave"/></svg><p>正在打开听记…</p></div>
+<dialog id="upload-dialog"><form id="upload-form" novalidate><div class="dialog-heading"><h2>上传录音</h2><button class="icon-button" type="button" data-close aria-label="关闭"><svg><use href="#icon-close"/></svg></button></div><label class="file-drop" id="file-drop"><svg><use href="#icon-upload"/></svg><strong id="file-label">点击选择或拖入录音</strong><span id="file-help">MP3、M4A、WAV、WebM 等音频文件</span><input id="audio-file" type="file" multiple accept="audio/*,.m4a,.mp3,.wav,.webm,.ogg,.flac,.mp4,.aac,.opus,.amr,.wma"></label><ol id="upload-file-list" class="upload-file-list"></ol><p id="upload-order-hint" class="small muted" hidden>按实际录音顺序排列，同一堂课合成一份完整笔记。</p><label id="upload-group-row" hidden>整理方式<select id="upload-group"><option value="combine">合成同一堂课</option><option value="separate">每个文件分别整理</option></select></label><label>上课日期<span class="lesson-field"><input id="recording-date" type="date" required></span></label><label>笔记名称（可留空）<input id="upload-title" maxlength="160" placeholder="课程名—主题—日期"></label><details><summary>本次整理提示词</summary><textarea id="upload-prompt" rows="6" maxlength="30000" placeholder="留空使用课程或个人默认设置"></textarea></details><div id="upload-progress" hidden><progress max="100" value="0"></progress><p class="small" id="upload-progress-text"></p></div><p class="small muted" id="upload-mode-hint">录音上传完成后由云端继续处理。请上传你有权使用的课堂录音。</p><p id="upload-error" class="form-error" role="alert" hidden></p><button class="primary full" id="upload-submit">上传并整理</button></form></dialog>
+<dialog id="account-dialog"><div class="dialog-heading"><h2>我的账号</h2><button type="button" class="icon-button" data-close aria-label="关闭"><svg><use href="#icon-close"/></svg></button></div><form id="account-form"><p id="account-email" class="muted"></p><p class="small"><a href="./guide/index.html" target="_blank" rel="noopener">使用指南 ↗</a></p><label>昵称<input id="account-display-name" required maxlength="60"></label><div class="form-actions"><button class="primary">保存</button><button type="button" class="text-button" id="password-open">修改密码</button><button type="button" class="text-button" id="logout">退出登录</button></div></form><details id="admin-panel" hidden><summary>站点用量</summary><div id="admin-content"></div></details><details id="feedback-admin-panel" hidden><summary>用户反馈</summary><div id="feedback-admin-content"></div></details></dialog>
+<dialog id="password-dialog"><form id="password-form"><div class="dialog-heading"><h2>修改密码</h2><button type="button" class="icon-button" data-close aria-label="关闭"><svg><use href="#icon-close"/></svg></button></div><label>当前密码<input id="current-password" type="password" autocomplete="current-password" required></label><label>新密码<input id="new-password" type="password" autocomplete="new-password" minlength="4" maxlength="128" required></label><p id="password-error" class="form-error" role="alert" hidden></p><button class="primary full">保存新密码</button></form></dialog>
+<dialog id="edit-dialog"><form id="edit-form"><div class="dialog-heading"><h2>编辑笔记</h2><button type="button" class="icon-button" data-close aria-label="关闭"><svg><use href="#icon-close"/></svg></button></div><label>名称<input id="edit-title" required maxlength="160"></label><label>上课日期<input id="edit-date" type="date"></label><label>笔记内容<textarea id="edit-summary" rows="14"></textarea></label><p class="small muted">支持 Markdown。转写原文单独保留。</p><p id="edit-error" class="form-error" role="alert" hidden></p><div class="form-actions"><button class="primary">保存笔记</button><button type="button" class="text-button danger" id="note-delete">删除笔记</button></div></form></dialog>
+<dialog id="regenerate-dialog"><form id="regenerate-form"><div class="dialog-heading"><h2>重新整理</h2><button type="button" class="icon-button" data-close aria-label="关闭"><svg><use href="#icon-close"/></svg></button></div><label>这次怎样整理<textarea id="regenerate-prompt" rows="10" maxlength="30000"></textarea></label><p class="small muted">从保留的转写原文开始，完成后更新笔记并保存历史版本。</p><p id="regenerate-error" class="form-error" role="alert" hidden></p><button class="primary full">开始整理</button></form></dialog>
+<dialog id="confirm-dialog"><form method="dialog"><div class="dialog-heading"><h2 id="confirm-title">确认删除</h2></div><p id="confirm-text"></p><div class="form-actions"><button value="confirm" class="primary">确认删除</button><button value="cancel" class="secondary">取消</button></div></form></dialog>
+<dialog id="local-transfer-dialog" aria-labelledby="local-transfer-title">
+  <header class="dialog-heading"><h2 id="local-transfer-title">传到电脑</h2><button type="button" class="icon-button" data-close aria-label="关闭"><svg><use href="#icon-close"/></svg></button></header>
+  <p id="local-transfer-help" class="muted small"></p>
+  <a id="local-transfer-link" class="local-transfer-link" target="_blank" rel="noopener" hidden></a>
+  <div class="local-inbox-heading"><h3>电脑收件箱</h3><button type="button" id="local-inbox-refresh" class="text-button">刷新</button></div>
+  <p class="muted small">也可在 iPad「文件 → Tailscale → henry → tingji」中存入录音。</p>
+  <label id="local-inbox-course-row" hidden>课程<select id="local-inbox-course"></select></label>
+  <div id="local-inbox-files" class="local-inbox-files"></div>
+  <p id="local-transfer-error" class="form-error" role="alert" hidden></p>
+</dialog>
+</body></html>

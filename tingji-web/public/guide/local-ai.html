@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f7f5ee"><title>听记 · 交给本地 AI 部署</title><link rel="icon" href="../favicon.svg"><link rel="stylesheet" href="../app.css"><link rel="stylesheet" href="../knowledge.css"><link rel="stylesheet" href="guide.css"><script src="guide.js" defer></script></head>
+<body><main class="guide-page" id="top"><a class="guide-back" href="index.html">← 使用指南</a><article class="knowledge-document markdown-body">
+<h1>交给本地 AI 部署</h1>
+<p>网站服务器将来可能关闭。你可以提前下载自己的笔记，并把<a href="https://github.com/henry-18-dot/tingji" target="_blank" rel="noopener">听记源码</a>交给能操作电脑的 AI，在自己的电脑上运行。</p>
+<nav class="guide-directory" aria-label="部署指南目录"><strong>目录</strong><a href="#prepare">准备</a><a href="#ai">复制给 AI</a><a href="#use">开始使用</a><a href="#cost">联网与费用</a></nav>
+<h2 id="prepare" tabindex="-1">准备</h2>
+<p>准备一台 Windows 电脑、能读写文件和运行命令的 AI，以及自己导出的笔记或转写文字。目前本地启动器使用 Windows 账户加密；其他系统需要先适配启动配置。</p>
+<figure class="guide-figure"><svg viewBox="0 0 720 155" role="img" aria-labelledby="local-flow-title local-flow-desc"><title id="local-flow-title">让 AI 部署本地听记</title><desc id="local-flow-desc">复制下方指令给 AI，AI 下载源码并安装运行环境，之后通过本机地址打开听记。</desc><defs><marker id="local-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10" fill="#62765a"/></marker></defs><g fill="#f1f3ec" stroke="#bfcbb7"><rect x="10" y="25" width="190" height="70" rx="8"/><rect x="265" y="25" width="190" height="70" rx="8"/><rect x="520" y="25" width="190" height="70" rx="8"/></g><g stroke="#62765a" marker-end="url(#local-arrow)"><path d="M211 60H251"/><path d="M466 60H506"/></g><g fill="#393d34" text-anchor="middle" font-size="18"><text x="105" y="65">把指令交给 AI</text><text x="360" y="65">下载并安装</text><text x="615" y="65">打开本机网页</text></g><text x="360" y="128" text-anchor="middle" fill="#777b6f" font-size="14">笔记和文件保存在自己的电脑</text></svg></figure>
+<h2 id="ai" tabindex="-1">复制给 AI</h2>
+<p>把下面整段指令发给你的本地 AI。它应先检查电脑和源码，再安装；需要密钥时，由你在电脑上填写。</p>
+<div class="guide-copy-example"><div id="deployment-prompt" class="guide-prompt">请帮我在自己的电脑上部署听记，源码：https://github.com/henry-18-dot/tingji 。
+
+先检查操作系统、现有 Python 和目标目录。读取仓库的 tingji-web/docs/local-app.md、tingji-web/scripts/start-local.py、tingji-web/requirements.txt 和 tingji-web/tingji_web/config.py，按当前代码实施。本地启动器依赖 Windows DPAPI；如果不是 Windows，先说明需要的适配，不要直接运行它或改成公开服务。
+
+把源码和独立 Python 环境装到我选定的新目录。保留已有文件和数据，不连接原网站的数据库，也不寻找开发者凭据。优先采用 Python 3.12，安装 tingji-web/requirements.txt 中的依赖。额外的 FFmpeg、LibreOffice、OCR 工具按实际需要安装；大额下载或付费操作先说明。
+
+先在不调用付费服务的模式下完成安装和文字导入。用 scripts/start-local.py 的 --data-dir 指定本次独立数据目录，初次用 --no-worker 启动；只监听 127.0.0.1，默认端口 8765，不开放防火墙、端口转发或公网入口。不创建开机自启。
+
+复用 tingji-web/scripts/import-legacy.py 和 tingji_web/legacy_import.py 的 transcripts_only 文字导入流程。先检查我提供的导出文件；普通 TXT 可在保留原件后转换为现有 tingji-transcripts-v1 格式并计算规定的内容哈希，再用明确的本地账号和目标数据库试读、导入。不要把任意文件当作已符合格式的导入包，不覆盖已有笔记，不在验收时自动整理全文。
+
+需要 AI 整理时，说明如何在本机受限配置中填写我自己的 DEEPSEEK_API_KEY。不要让我把密钥发到聊天，不打印密钥，也不提交到 Git。录音转写另需火山 ASR、私有 TOS 和 FFmpeg；先说明上传的数据与费用，由我决定是否启用。不要许诺完全离线的 AI 整理或免费转写。
+
+最后检查网页能打开、导入的文字能阅读和下载、数据确实保存在指定目录。告诉我网页地址、启动与停止方式、备份位置，以及哪些功能还未配置。保留原文。完成这些检查就停止。</div><button class="secondary" type="button" data-copy="deployment-prompt">复制部署指令</button><span class="guide-copy-status muted small" role="status" aria-live="polite"></span></div>
+<h2 id="use" tabindex="-1">开始使用</h2>
+<p>AI 完成后，打开它提供的本机地址，默认是 <code>http://127.0.0.1:8765/</code>。先检查导入的文字，再决定是否配置 AI 整理和录音转写。</p>
+<p>本地数据与网站分别保存。备份 AI 指定的数据目录；网站关闭后，本地安装仍需使用自己的数据和服务配置。</p>
+<h2 id="cost" tabindex="-1">联网与费用</h2>
+<ul><li>阅读、保存和导出已有文字使用本地文件。</li><li>AI 整理调用 DeepSeek，需要自己的 API 密钥并按服务商计费。</li><li>录音转写需要自己的火山 ASR 与 TOS 配置；音频会上传至所配置的云服务，费用由自己的账号承担。</li><li>在线配图、官方课程资料等功能需要网络。</li></ul>
+<p>仅导入文字时，可以先不配置录音转写和云存储。</p>
+</article><footer><a href="index.html">返回使用指南</a></footer></main></body></html>

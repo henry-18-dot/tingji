@@ -1,0 +1,30 @@
+.knowledge-relation,.knowledge-tree{box-sizing:border-box;min-width:0;max-width:100%;margin:20px 0;color:#303432;font:inherit}
+.knowledge-relation{background:#fff;border:1px solid #d9ddd8;border-radius:6px;overflow:hidden}
+.knowledge-relation-scroll{box-sizing:border-box;max-width:100%;overflow-x:auto;overflow-y:hidden;padding:15px;overscroll-behavior-x:contain;scrollbar-width:thin}
+.knowledge-relation-scroll svg{display:block;max-width:none;margin:auto;background:#fff;overflow:visible;font-family:"Segoe UI","Microsoft YaHei",sans-serif;font-size:15px;color:#303030}
+.knowledge-relation-scroll svg text,.knowledge-relation-scroll svg tspan{fill:#252525;stroke:none}
+.knowledge-relation-scroll svg .node text{text-anchor:middle}
+.knowledge-relation-scroll svg .node rect,.knowledge-relation-scroll svg .node circle,.knowledge-relation-scroll svg .node ellipse,.knowledge-relation-scroll svg .node polygon,.knowledge-relation-scroll svg .node path{fill:#fff;stroke:#4b4b4b;stroke-width:1.15px}
+.knowledge-relation-scroll svg .edgePaths path{fill:none;stroke:#555;stroke-width:1.3px}
+.knowledge-relation-scroll svg .edge-pattern-dotted{stroke-dasharray:3 3}
+.knowledge-relation-scroll svg .edge-thickness-thick{stroke-width:2.5px}
+.knowledge-relation-scroll svg marker path,.knowledge-relation-scroll svg marker polygon,.knowledge-relation-scroll svg marker circle{fill:#555;stroke:#555}
+.knowledge-relation-scroll svg .labelBkg,.knowledge-relation-scroll svg .edgeLabel rect{fill:#fff;stroke:none}
+.knowledge-relation-message{margin:0!important;padding:12px 15px;color:#646b65;font-size:13px;line-height:1.6}
+.knowledge-relation-source{box-sizing:border-box;max-width:100%;max-height:300px;overflow:auto;margin:0!important;padding:12px 15px!important;border:0!important;border-top:1px solid #e6e8e4!important;border-radius:0!important;background:#f8f9f6!important;font:12px/1.7 Consolas,"Cascadia Code",monospace!important;white-space:pre;tab-size:2}
+.knowledge-relation-source code{white-space:pre;font:inherit!important}
+.knowledge-tree{padding:5px 0 5px 12px;border-left:2px solid #d5ddd4;font-size:14px;line-height:1.6;background:transparent;overflow-wrap:anywhere}
+.knowledge-tree .knowledge-tree-list{display:block;margin:0!important;padding:0!important;list-style:none!important}
+.knowledge-tree .knowledge-tree-list .knowledge-tree-list{margin-left:9px!important;padding-left:17px!important;border-left:1px solid #e0e4dc}
+.knowledge-tree .knowledge-tree-item{margin:0!important;padding:0!important;list-style:none!important}
+.knowledge-tree .knowledge-tree-branch{margin:0;padding:0;border:0;background:none}
+.knowledge-tree .knowledge-tree-branch>summary{display:flex;align-items:baseline;gap:8px;box-sizing:border-box;min-height:32px;padding:5px 4px;cursor:pointer;font:inherit;list-style:none;border-radius:3px;color:inherit}
+.knowledge-tree .knowledge-tree-branch>summary::-webkit-details-marker{display:none}
+.knowledge-tree .knowledge-tree-branch>summary::before{content:"";display:inline-block;flex:0 0 5px;width:5px;height:5px;border-right:1.4px solid #667064;border-bottom:1.4px solid #667064;transform:rotate(-45deg);position:relative;top:-1px;transition:transform .12s ease}
+.knowledge-tree .knowledge-tree-branch[open]>summary::before{transform:rotate(45deg);top:-3px}
+.knowledge-tree .knowledge-tree-branch>summary:hover{background:#f2f4ee}
+.knowledge-tree .knowledge-tree-leaf{display:block;padding:5px 4px 5px 17px;min-height:32px;box-sizing:border-box}
+.knowledge-tree :focus-visible,.knowledge-relation :focus-visible{outline:2px solid #647561;outline-offset:2px}
+@media(max-width:600px){.knowledge-relation-scroll{padding:12px}.knowledge-tree .knowledge-tree-branch>summary,.knowledge-tree .knowledge-tree-leaf{min-height:36px;padding-top:7px;padding-bottom:7px}}
+@media(prefers-reduced-motion:reduce){.knowledge-tree .knowledge-tree-branch>summary::before{transition:none}}
+@media print{.knowledge-relation{break-inside:avoid}.knowledge-relation-scroll{overflow:visible;padding:10px}.knowledge-relation-scroll svg{max-width:100%;height:auto}.knowledge-tree .knowledge-tree-branch::details-content{content-visibility:visible}.knowledge-tree .knowledge-tree-branch>.knowledge-tree-list{display:block}}

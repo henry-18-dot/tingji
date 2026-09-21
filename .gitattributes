@@ -1,0 +1,2 @@
+# Keep immutable browser assets byte-for-byte on every platform.
+tingji-web/public/** -text

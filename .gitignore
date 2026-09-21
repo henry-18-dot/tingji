@@ -15,7 +15,6 @@
 *.log
 
 # Cloud projects are maintained separately
-/tingji-web/
 /tingji-cloud/
 /tools/
 /使用说明.md
@@ -57,3 +56,19 @@ Thumbs.db
 !/scripts/recover-standard.py
 !/scripts/export-note.py
 !/scripts/qa_fixture.py
+
+# Shared local application source; never publish runtime data or operator files.
+**/data/
+**/test-data/
+**/output/
+**/qa/
+**/QA/
+**/AI_HANDOFF.md
+**/AGENTS.md
+*.dpapi
+!/docs/local-ai.md
+!/docs/images/
+/tingji-web/scripts/*
+!/tingji-web/scripts/start-local.py
+!/tingji-web/scripts/import-legacy.py
+!/tingji-web/scripts/build-web-assets.mjs
